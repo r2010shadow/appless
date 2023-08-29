@@ -6,10 +6,6 @@ st.title('That is my app.')
 st.write("Streamlit is an awesome tools.")
 
 import streamlit as st
-number = st.slider("Pick a number: ", min_value=1, max_value=10)
-st.text("Your number is " + str(number))
-
-
 from datetime import time, datetime
 
 st.header('st.slider')
@@ -48,3 +44,14 @@ start_time = st.slider(
      value=datetime(2020, 1, 1, 9, 30),
      format="MM/DD/YY - hh:mm")
 st.write("Start time:", start_time)
+
+import pandas as pd
+import numpy as np
+
+st.header('Line chart')
+
+chart_data = pd.DataFrame(
+     np.random.randn(20, 3),
+     columns=['a', 'b', 'c'])
+
+st.line_chart(chart_data)
