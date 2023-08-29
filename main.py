@@ -131,7 +131,7 @@ st.write('Selected number from slider widget is:', number)
 
 # 12
 st.title('st.secrets')
-
+message='Customizing the theme of Streamlit apps'
 st.write(st.secrets['message'])
 
 
