@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import time, datetime
+import time
 
 # 14
 
@@ -8,7 +9,7 @@ st.set_page_config(layout="wide")
 st.title('How to layout your Streamlit app')
 
 with st.expander('About this app'):
-  st.write('This app shows the various ways on how you can layout your Streamlit app.')
+  #st.write('This app shows the various ways on how you can layout your Streamlit app.')
   st.image('https://www.labware.com/hs-fs/hubfs/_LabWare.com/Logos/LabWare%20Corporate%20Logo%20Color.png?width=250&height=143&name=LabWare%20Corporate%20Logo%20Color.png', width=250)
 
 st.sidebar.header('Input')
