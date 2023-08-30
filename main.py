@@ -57,13 +57,12 @@ values = st.slider(
 st.write('Values:', values)
 
 # 样例 3
+st.header('st.button')
 
-st.subheader('Range time slider')
-
-appointment = st.slider(
-     "Schedule your appointment:",
-     value=(time(11, 30), time(12, 45)))
-st.write("You're scheduled for:", appointment)
+if st.button('Say hello'):
+     st.write('Why hello there')
+else:
+     st.write('Goodbye')
 
 # 样例 4
 
@@ -180,7 +179,18 @@ else:
 
 
 # 15
+st.title('st.progress')
 
+with st.expander('About this app'):
+     st.write('You can now display the progress of your calculations in a Streamlit app with the `st.progress` command.')
+
+my_bar = st.progress(0)
+
+for percent_complete in range(100):
+     time.sleep(0.05)
+     my_bar.progress(percent_complete + 1)
+
+st.balloons()
 
 #
 
