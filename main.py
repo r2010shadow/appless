@@ -1,5 +1,5 @@
 import streamlit as st
-
+from datetime import time, datetime
 
 # 14
 
@@ -9,7 +9,7 @@ st.title('How to layout your Streamlit app')
 
 with st.expander('About this app'):
   st.write('This app shows the various ways on how you can layout your Streamlit app.')
-  st.image('https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.png', width=250)
+  st.image('https://www.labware.com/hs-fs/hubfs/_LabWare.com/Logos/LabWare%20Corporate%20Logo%20Color.png?width=250&height=143&name=LabWare%20Corporate%20Logo%20Color.png', width=250)
 
 st.sidebar.header('Input')
 user_name = st.sidebar.text_input('What is your name?')
@@ -38,16 +38,6 @@ with col3:
   else:
     st.write('👈 Please choose your favorite **food**!')
 
-
-# Add title and Write in
-
-st.title('That is my app.')
-st.write("Streamlit is an awesome tools.")
-
-import streamlit as st
-from datetime import time, datetime
-
-st.header('st.slider')
 
 # 样例 1
 
@@ -188,9 +178,21 @@ else:
   st.info('☝️ Upload a CSV file')
 
 
+# 15
+st.title('st.progress')
 
+with st.expander('About this app'):
+     st.write('You can now display the progress of your calculations in a Streamlit app with the `st.progress` command.')
 
+my_bar = st.progress(0)
 
+for percent_complete in range(100):
+     time.sleep(0.05)
+     my_bar.progress(percent_complete + 1)
+
+st.balloons()
+
+#
 
 
 
