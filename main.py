@@ -238,6 +238,10 @@ st.write('Selected value: ', selected_val)
 
 
 # 17
+import numpy as np
+import pandas as pd
+from time import time
+
 st.title('st.cache')
 
 # Using cache
