@@ -238,32 +238,39 @@ st.write('Selected value: ', selected_val)
 
 
 # 17
-st.title('st.experimental_get_query_params')
+st.title('st.cache')
 
-# 1. Instructions
-st.header('1. Instructions')
-st.markdown('''
-In the above URL bar of your internet browser, append the following:
-`?name=Jack&surname=Beanstalk`
-after the base URL `http://share.streamlit.io/dataprofessor/st.experimental_get_query_params/`
-such that it becomes
-`http://share.streamlit.io/dataprofessor/st.experimental_get_query_params/?firstname=Jack&surname=Beanstalk`
-''')
-URL=`http://share.streamlit.io/dataprofessor/st.experimental_get_query_params/?firstname=Jack&surname=Beanstalk`
+# Using cache
+a0 = time()
+st.subheader('Using st.cache')
+
+@st.cache(suppress_st_warning=True)
+def load_data_a():
+  df = pd.DataFrame(
+    np.random.rand(2000000, 5),
+    columns=['a', 'b', 'c', 'd', 'e']
+  )
+  return df
+
+st.write(load_data_a())
+a1 = time()
+st.info(a1-a0)
 
 
-# 2. Contents of st.experimental_get_query_params
-st.header('2. Contents of st.experimental_get_query_params')
-st.write(st.experimental_get_query_params(URL))
+# Not using cache
+b0 = time()
+st.subheader('Not using st.cache')
 
+def load_data_b():
+  df = pd.DataFrame(
+    np.random.rand(2000000, 5),
+    columns=['a', 'b', 'c', 'd', 'e']
+  )
+  return df
 
-# 3. Retrieving and displaying information from the URL
-st.header('3. Retrieving and displaying information from the URL')
-
-firstname = st.experimental_get_query_params()['firstname'][0]
-surname = st.experimental_get_query_params()['surname'][0]
-
-st.write(f'Hello **{firstname} {surname}**, how are you?')
+st.write(load_data_b())
+b1 = time()
+st.info(b1-b0)
 
 
 # 
