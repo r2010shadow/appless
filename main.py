@@ -109,7 +109,7 @@ pressed = left_column.button('Press me?')
 if pressed:
     right_column.write("Woohoo!")
 
-expander = st.beta_expander("FAQ")
+expander = st.expander("FAQ")
 expander.write("Here you could put in some really, really long explanations...")
 
 # 添加进度条
