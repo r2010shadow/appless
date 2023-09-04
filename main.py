@@ -64,14 +64,6 @@ st.bar_chart(chart_data)
 # format：图像格式：'JPEG' 或'PNG')，默认值：JPEG
 
 
-# image = Image.open('123.jpg')
-# st.image(image, caption='刘雅鸣视察葫芦岛', use_column_width=True)
-#
-
-
-image = Image.open('123.jpg')
-st.image(image, caption='Sunrise by the mountains')
-
 # 绘制一个地图
 # map_data = pd.DataFrame(
 #     np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
