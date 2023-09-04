@@ -4,15 +4,12 @@ import pandas as pd
 #col1, col2, col3, col4 = st.columns((2,1,1,1))
 
 
-st.title("This is my first app")
+st.title("Load Date")
 
-st.header("This is header")
+st.header("loading ... ")
 
-st.subheader("This is subheader")
+st.subheader("show data ...")
 
-st.write("Now in write zone")
-
-
-df = load_data("https://github.com/r2010shadow/appless/blob/main/main.py")
+df = ("https://github.com/r2010shadow/appless/blob/main/main.py")
 st.write(df)
 
