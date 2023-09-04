@@ -46,14 +46,13 @@ with col3:
   else:
     st.write('👈 Please choose your favorite **food**!')
 
-
+c11, c12 = st.columns(2)
 # 样例 1
-
+with c11:
   st.subheader('Slider')
   age = st.slider('How old are you?', 0, 130, 25)
   st.write("I'm ", age, 'years old')
-  
-
+with c12:
 # 样例 2
   st.subheader('Range slider')
   values = st.slider(
@@ -83,10 +82,10 @@ import pandas as pd
 import numpy as np
 
 st.header('Line chart')
-chart_data = pd.DataFrame(
-     np.random.randn(20, 3),
-     columns=['a', 'b', 'c'])
-st.line_chart(chart_data)
+#chart_data = pd.DataFrame(
+#     np.random.randn(20, 3),
+#     columns=['a', 'b', 'c'])
+#st.line_chart(chart_data)
 
 # 6
 st.header('st.selectbox')
@@ -263,7 +262,7 @@ st.write("st.session_state object:", st.session_state)
 # 19
 import requests
 
-st.title('🏀 Bored API app')
+#st.title('🏀 Bored API app')
 
 st.sidebar.header('Input')
 selected_type = st.sidebar.selectbox('Select an activity type', ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"])
