@@ -1,358 +1,224 @@
-# code from 30days.streamlit.app
-import streamlit as st
-from datetime import time, datetime
+
 import time
-
-## one line cartoon tips ##
-# st.balloons() 
-## ##
-
-# 14
-
-st.set_page_config(layout="wide")
-
-#col11, col12, col13, col14 = st.columns((2,1,1,1))
-
-
-st.title('How to layout your Streamlit app')
-
-with st.expander('About this app'):
-  #st.write('This app shows the various ways on how you can layout your Streamlit app.')
-  st.image('https://www.labware.com/hs-fs/hubfs/_LabWare.com/Logos/LabWare%20Corporate%20Logo%20Color.png?width=250&height=143&name=LabWare%20Corporate%20Logo%20Color.png', width=250)
-
-  st.sidebar.header('Input')
-  user_name = st.sidebar.text_input('What is your name?')
-  user_emoji = st.sidebar.selectbox('Choose an emoji', ['', '😄', '😆', '😊', '😍', '😴', '😕', '😱'])
-  user_food = st.sidebar.selectbox('What is your favorite food?', ['', 'Tom Yum Kung', 'Burrito', 'Lasagna', 'Hamburger', 'Pizza'])
-  st.header('Output')
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-  if user_name != '':
-    st.write(f'👋 Hello {user_name}!')
-  else:
-    st.write('👈  Please enter your **name**!')
-
-with col2:
-  if user_emoji != '':
-    st.write(f'{user_emoji} is your favorite **emoji**!')
-  else:
-    st.write('👈 Please choose an **emoji**!')
-
-with col3:
-  if user_food != '':
-    st.write(f'🍴 **{user_food}** is your favorite **food**!')
-  else:
-    st.write('👈 Please choose your favorite **food**!')
-
-c11, c12 = st.columns(2)
-# 样例 1
-with c11:
-  st.subheader('Slider')
-  age = st.slider('How old are you?', 0, 130, 25)
-  st.write("I'm ", age, 'years old')
-with c12:
-# 样例 2
-  st.subheader('Range slider')
-  values = st.slider(
-     'Select a range of values',
-     0.0, 100.0, (25.0, 75.0))
-  st.write('Values:', values)
-
-
-# 样例 3
-  st.header('st.button')
-  if st.button('Say hello'):
-     st.write('Why hello there')
-  else:
-     st.write('Goodbye')
-
-# 样例 4
-
-st.subheader('Datetime slider')
-
-start_time = st.slider(
-     "When do you start?",
-     value=datetime(2020, 1, 1, 9, 30),
-     format="MM/DD/YY - hh:mm")
-st.write("Start time:", start_time)
-# 5
-import pandas as pd
+import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+import streamlit as st
+from PIL import Image
+import altair as alt
 
-st.header('Line chart')
-#chart_data = pd.DataFrame(
-#     np.random.randn(20, 3),
-#     columns=['a', 'b', 'c'])
-#st.line_chart(chart_data)
+st.title("This is my first app")
+st.write("hello")
+st.write("Here's our first attempt at using data to create a table:")
 
-# 6
-st.header('st.selectbox')
+df = pd.DataFrame({
+    'first column': [5, 6, 7, 8],
+    'second column': [50, 60, 70, 80]
+})
+
+st.write(pd.DataFrame({
+    'first column': [1, 2, 3, 4],
+    'second column': [10, 20, 30, 40]
+}))
+# 其中df定义的位置，并不影响最后的输出位置！
+# df
+
+# 绘制图表
+# 折线图
+chart_data = pd.DataFrame(
+    np.random.randn(20, 3),
+    columns=['a', 'b', 'c'])
+
+st.line_chart(chart_data)
+
+# 区域图的可视化
+# “streamlit”中的“area_chart”方法显示区域图，方法原型和折线图用到的方法一致，所以这里就不做过多的赘述，例如下面的代码
+
+chart_data = pd.DataFrame(
+    np.random.randn(50, 3),
+    columns=['a', 'b', 'c'])
+
+st.area_chart(chart_data)
+
+# 柱状图的可视化
+# “streamlit”的“bar_chart()”方法显示柱状图，例如下面的代码
+
+chart_data = pd.DataFrame(np.random.randn(50, 3),
+                          columns=['a', 'b', 'c'])
+st.bar_chart(chart_data)
+
+# 显示图像
+# “streamlit”中的“image”方法可以用来显示一张或多张图像，其中的方法原型，
+
+# streamlit.image(image, caption=None, width=None, use_column_width=False, clamp=False, channels='RGB', format='JPEG')
+# 参数:
+# image：要显示的图像，类型可以是numpy.ndarray, [numpy.ndarray], BytesIO, str, 或 [str]) – 单色图像为(w,h) 或 (w,h,1)
+# 彩色图像为(w,h,3)
+# RGBA图像为(w,h,4)
+# 也可以指定一个图像url，或url列表
+# caption：图像标题，字符串。如果显示多幅图像，caption应当是字符串列表
+# width ：图像宽度，None表示使用图像自身宽度
+# use_column_width：如果设置为True，则使用列宽作为图像宽度
+# clamp：是否将图像的像素值压缩到有效域（0~255） ，仅对字节数组图像有效。
+# channels：图像通道类型，'RGB' 或 'BGR'，默认值：RGB
+# format：图像格式：'JPEG' 或'PNG')，默认值：JPEG
+
+
+# image = Image.open('123.jpg')
+# st.image(image, caption='刘雅鸣视察葫芦岛', use_column_width=True)
+#
+
+
+image = Image.open('123.jpg')
+st.image(image, caption='Sunrise by the mountains')
+
+# 绘制一个地图
+# map_data = pd.DataFrame(
+#     np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
+#     columns=['lat', 'lon'])
+#
+# st.map(map_data)
+
+# 调整地图的中心到沈阳
+map_data = pd.DataFrame(
+    np.random.randn(1000, 2) / [50, 50] + [41.8, 123.4],
+    columns=['lat', 'lon'])
+st.map(map_data)
+
+# 增加交互性，显示单选框
+# st.checkbox()**单选框，更多请查询API reference
+
+if st.checkbox('Show dataframe'):
+    chart_data = pd.DataFrame(
+        np.random.randn(20, 3),
+        columns=['a', 'b', 'c'])
+    chart_data
+# 增加复选框
 option = st.selectbox(
-     'What is your favorite color?',
-     ('Blue', 'Red', 'Green'))
+    'Which number do you like best?',
+    df['first column'])
 
-st.write('Your favorite color is ', option)
+'You selected: ', option
 
-# 7
-st.header('st.multiselect')
+# 调整布局
+# 为了使得你的webApp更加好看，你可以将一些不必要的内容放置到其他区域。这样可以使得你的webApp居中。
+# **st.sidebar()**将刚才的边框设置在左侧
+# tips：可以发现每次选择不同的数字，整个页面都会刷新，包括刚才设置的地图上的点也会跟着刷新，和刚才的折线图
 
-options = st.multiselect(
-     'What are your favorite colors',
-     ['Green', 'Yellow', 'Red', 'Blue'],
-     ['Yellow', 'Red'])
+add_selectbox = st.sidebar.selectbox(
+    "How would you like to be contacted?",
+    ("Email", "Home phone", "Mobile phone")
+)
 
-st.write('You selected:', options)
+# 你也可以使用st.beta_columns来并排布置小部件，或者使用st.beta_expander来隐藏大型内容以节省空间
 
-# 8
-st.header('st.checkbox')
+left_column, right_column = st.beta_columns(2)
+pressed = left_column.button('Press me?')
+if pressed:
+    right_column.write("Woohoo!")
 
-st.write ('What would you like to order?')
+expander = st.beta_expander("FAQ")
+expander.write("Here you could put in some really, really long explanations...")
 
-icecream = st.checkbox('Ice cream')
-coffee = st.checkbox('Coffee')
-cola = st.checkbox('Cola')
+# 添加进度条
+# 当在一个应用程序中添加长期运行的计算时，你可以使用st.progress()来实时显示状态。
+# 首先，让我们导入时间。我们将使用time.sleep()方法来模拟一个长期运行的计算
+'Starting a long computation...'
 
-if icecream:
-     st.write("Great! Here's some more 🍦")
+# Add a placeholder
+latest_iteration = st.empty()
+bar = st.progress(0)
 
-if coffee:
-     st.write("Okay, here's some coffee ☕")
+for i in range(100):
+    # Update the progress bar with each iteration.
+    latest_iteration.text(f'Iteration {i + 1}')
+    bar.progress(i + 1)
+    time.sleep(0.1)
 
-if cola:
-     st.write("Here you go 🥤")
-
-
-#  9
-#import pandas_profiling
-#from streamlit_pandas_profiling import st_profile_report
-
-#st.header('`streamlit_pandas_profiling`')
-
-#df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
-
-#pr = df.profile_report()
-#st_profile_report(pr)
-
-# 10
-st.header('st.latex')
-
-st.latex(r'''
-     a + ar + a r^2 + a r^3 + \cdots + a r^{n-1} =
-     \sum_{k=0}^{n-1} ar^k =
-     a \left(\frac{1-r^{n}}{1-r}\right)
-     ''')
-
-# 11
-st.title('Customizing the theme of Streamlit apps')
-
-st.write('Contents of the `.streamlit/config.toml` file of this app')
-
-st.code("""
-[theme]
-primaryColor="#F39C12"
-backgroundColor="#2E86C1"
-secondaryBackgroundColor="#AED6F1"
-textColor="#FFFFFF"
-font="monospace"
-""")
-
-number = st.sidebar.slider('Select a number:', 0, 10, 5)
-st.write('Selected number from slider widget is:', number)
+'...and now we\'re done!'
 
 
-# 12
-#st.title('st.secrets')
-#st.write(st.secrets['message'])
+# 现在让我们使用st.echo()让中间部分的代码可视化：
+# st.echo - 显示应用源代码
+# 在with块中使用streamlit的echo方法显示应用源代码，然后执行。
 
-#13 notepad -> save *.csv(utf8)
-st.title('st.file_uploader')
-
-st.subheader('Input CSV')
-uploaded_file = st.file_uploader("Choose a file")
-
-if uploaded_file is not None:
-  df = pd.read_csv(uploaded_file)
-  st.subheader('DataFrame')
-  st.write(df)
-  st.subheader('Descriptive Statistics')
-  st.write(df.describe())
-else:
-  st.info('☝️ Upload a CSV file')
+def get_user_name():
+    return 'John'
 
 
-# 15
-#st.title('st.progress')
-#my_bar = st.progress(0)
+with st.echo():
+    # Everything inside this block will be both printed to the screen
+    # and executed.
 
-#for percent_complete in range(100):
-#     time.sleep(0.05)
-#     my_bar.progress(percent_complete + 1)
-
-#st.balloons()
-
-# 16
-st.title('st.form')
-
-# Full example of using the with notation
-st.header('1. Example of using `with` notation')
-st.subheader('Coffee machine')
-
-with st.form('my_form'):
-    st.subheader('**Order your coffee**')
-
-    # Input widgets
-    coffee_bean_val = st.selectbox('Coffee bean', ['Arabica', 'Robusta'])
-    coffee_roast_val = st.selectbox('Coffee roast', ['Light', 'Medium', 'Dark'])
-    brewing_val = st.selectbox('Brewing method', ['Aeropress', 'Drip', 'French press', 'Moka pot', 'Siphon'])
-    serving_type_val = st.selectbox('Serving format', ['Hot', 'Iced', 'Frappe'])
-    milk_val = st.select_slider('Milk intensity', ['None', 'Low', 'Medium', 'High'])
-    owncup_val = st.checkbox('Bring own cup')
-
-    # Every form must have a submit button
-    submitted = st.form_submit_button('Submit')
-
-if submitted:
-    st.markdown(f'''
-        ☕ You have ordered:
-        - Coffee bean: `{coffee_bean_val}`
-        - Coffee roast: `{coffee_roast_val}`
-        - Brewing: `{brewing_val}`
-        - Serving type: `{serving_type_val}`
-        - Milk: `{milk_val}`
-        - Bring own cup: `{owncup_val}`
-        ''')
-else:
-    st.write('☝️ Place your order!')
+    def get_punctuation():
+        return '!!!'
 
 
-# Short example of using an object notation
-st.header('2. Example of object notation')
+    greeting = "Hi there, "
+    value = get_user_name()
+    punctuation = get_punctuation()
 
-form = st.form('my_form_2')
-selected_val = form.slider('Select a value')
-form.form_submit_button('Submit')
+    st.write(greeting, value, punctuation)
 
-st.write('Selected value: ', selected_val)
+# And now we're back to _not_ printing to the screen
+foo = 'bar'
+st.write('Done!')
+
+# st.pyplot - 显示pyplot图表
+# streamlit的pyplot方法显示指定的matplotlib.pyplot图表。
+#
+# 方法原型
+# streamlit.pyplot(fig=None, **kwargs)
+# 参数：
+# fig：要使用的绘制面板，当为None时，使用整个绘图区域
+# **kwargs ：传入Matplotlib的savefig函数的关键字参数
 
 
-# 17
-# Using cache
+fig, ax = plt.subplots()
+ax.scatter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+st.pyplot(fig)
 
+arr = np.random.normal(1, 1, size=100)
+fig, ax = plt.subplots()
+ax.hist(arr, bins=20)
+st.pyplot(fig)
 
-# 18
-st.title('st.session_state')
+# st.vega_lite_chart
+# Streamlit Version   v1.1.0
+# Display a chart using the Vega-Lite library.
 
-def lbs_to_kg():
-  st.session_state.kg = st.session_state.lbs/2.2046
-def kg_to_lbs():
-  st.session_state.lbs = st.session_state.kg*2.2046
-
-st.header('Input')
-col1, spacer, col2 = st.columns([2,1,2])
-with col1:
-  pounds = st.number_input("Pounds:", key = "lbs", on_change = lbs_to_kg)
-with col2:
-  kilogram = st.number_input("Kilograms:", key = "kg", on_change = kg_to_lbs)
-
-st.header('Output')
-st.write("st.session_state object:", st.session_state)
-
-# 19
-import requests
-
-#st.title('🏀 Bored API app')
-
-st.sidebar.header('Input')
-selected_type = st.sidebar.selectbox('Select an activity type', ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"])
-
-suggested_activity_url = f'http://www.boredapi.com/api/activity?type={selected_type}'
-json_data = requests.get(suggested_activity_url)
-suggested_activity = json_data.json()
-
-c1, c2 = st.columns(2)
-with c1:
-  with st.expander('About this app'):
-    st.write('Are you bored? The **Bored API app** provides suggestions on activities that you can do when you are bored. This app is powered by the Bored API.')
-with c2:
-  with st.expander('JSON data'):
-    st.write(suggested_activity)
-
-st.header('Suggested activity')
-st.info(suggested_activity['activity'])
-
-col1, col2, col3 = st.columns(3)
-with col1:
-  st.metric(label='Number of Participants', value=suggested_activity['participants'], delta='')
-with col2:
-  st.metric(label='Type of Activity', value=suggested_activity['type'].capitalize(), delta='')
-with col3:
-  st.metric(label='Price', value=suggested_activity['price'], delta='')
-
-# 20
-# From https://blog.streamlit.io/how-to-build-streamlit-apps-on-replit/
-##
-
-# Expander section
-with st.expander("About"):
-  st.write("""Trying to add a data table, chart, sidebar button with 
-          ballons, an image, text input & exploring tabs!""")
-
-# Sidebar section
-with st.sidebar:
-  st.subheader('This is a Sidebar')
-  st.write('Button with Balloons 🎈')
-  if st.button('Click me!✨'):
-    st.balloons()
-  else:
-    st.write(' ')
-
-# Dataframe and Chart display section
-st.subheader('Interactive Data Table')
 df = pd.DataFrame(
-    np.random.randn(50, 3),  # generates random numeric values!
-    columns=["a", "b", "c"])
-st.dataframe(df)
+    np.random.randn(200, 3),
+    columns=['a', 'b', 'c'])
 
-st.subheader('Bar Chart 📊')
-st.bar_chart(df)
+st.vega_lite_chart(df, {
+    'mark': {'type': 'circle', 'tooltip': True},
+    'encoding': {
+        'x': {'field': 'a', 'type': 'quantitative'},
+        'y': {'field': 'b', 'type': 'quantitative'},
+        'size': {'field': 'c', 'type': 'quantitative'},
+        'color': {'field': 'c', 'type': 'quantitative'},
+    },
+})
 
-# Image upload and text input section
-#st.subheader('An Image')
-st.image(
-    'https://www.labware.com/hs-fs/hubfs/_LabWare.com/Logos/LabWare%20Corporate%20Logo%20Color.png?width=250&height=143&name=LabWare%20Corporate%20Logo%20Color.png', width=250)
+# st.altair - 显示altair图表
+# streamlit的altair方法使用Altair库显示指定的图表。
+#
+# 方法原型
+# streamlit.altair_chart(altair_chart, width=0)
+# 参数：
+#
+# altair_chart：要显示的Altair图表对象，类型：altair.vegalite.v2.api.Chart
+# width：宽度模式，0 表示拉伸图表到文档宽度，-1表示使用Altair的默认值，大于0表示 设置的宽度像素。默认值：0。注意如果顶层宽度已定义，那么将覆盖这里的设定。
+# 示例代码
 
-st.subheader('Text Input')
-greet = st.text_input('Write your name, please!')
-st.write('👋 Hey!', greet)
+df = pd.DataFrame(
+    np.random.randn(200, 3),
+    columns=['a', 'b', 'c'])
+c = alt.Chart(df).mark_circle().encode(
+    x='a', y='b', size='c', color='c')
+st.altair_chart(c, use_container_width=True)
 
-# Tabs section
-st.subheader('Tabs')
-tab1, tab2 = st.tabs(["TAB 1", "TAB 2"])
-
-with tab1:
-  st.write('WOW!')
-  #st.image("https://img.zcool.cn/community/017bc85fc0cdbb11013fdcc78f8de1.gif", width=200)
-
-with tab2:
-  st.write('Do you like ice cream? 🍨')
-  agree = st.checkbox('Yes! I love it')
-  disagree = st.checkbox("Nah! 😅")
-  if agree:
-    st.write('Even I love it 🤤')
-  if disagree:
-    st.write('You are boring 😒')
-
-
-
-
-
-
-
-
-
-
-
-
-
+————————————————
+版权声明：本文为CSDN博主「weixin_46405336」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_46405336/article/details/121020784
