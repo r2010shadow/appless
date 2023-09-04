@@ -11,7 +11,7 @@ import time
 
 st.set_page_config(layout="wide")
 
-col11, col12, col13, col14 = st.columns((2,1,1,1))
+#col11, col12, col13, col14 = st.columns((2,1,1,1))
 
 
 st.title('How to layout your Streamlit app')
@@ -20,7 +20,6 @@ with st.expander('About this app'):
   #st.write('This app shows the various ways on how you can layout your Streamlit app.')
   st.image('https://www.labware.com/hs-fs/hubfs/_LabWare.com/Logos/LabWare%20Corporate%20Logo%20Color.png?width=250&height=143&name=LabWare%20Corporate%20Logo%20Color.png', width=250)
 
-with col11:
   st.sidebar.header('Input')
   user_name = st.sidebar.text_input('What is your name?')
   user_emoji = st.sidebar.selectbox('Choose an emoji', ['', '😄', '😆', '😊', '😍', '😴', '😕', '😱'])
@@ -49,12 +48,12 @@ with col3:
 
 
 # 样例 1
-with col12:
+
   st.subheader('Slider')
   age = st.slider('How old are you?', 0, 130, 25)
   st.write("I'm ", age, 'years old')
   
-with col13:
+
 # 样例 2
   st.subheader('Range slider')
   values = st.slider(
@@ -62,7 +61,7 @@ with col13:
      0.0, 100.0, (25.0, 75.0))
   st.write('Values:', values)
 
-with col14:
+
 # 样例 3
   st.header('st.button')
   if st.button('Say hello'):
@@ -88,6 +87,7 @@ chart_data = pd.DataFrame(
      np.random.randn(20, 3),
      columns=['a', 'b', 'c'])
 st.line_chart(chart_data)
+
 # 6
 st.header('st.selectbox')
 option = st.selectbox(
@@ -126,7 +126,6 @@ if cola:
 
 
 #  9
-#import pandas as pd
 #import pandas_profiling
 #from streamlit_pandas_profiling import st_profile_report
 
