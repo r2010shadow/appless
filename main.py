@@ -104,7 +104,7 @@ add_selectbox = st.sidebar.selectbox(
 
 # 你也可以使用st.beta_columns来并排布置小部件，或者使用st.beta_expander来隐藏大型内容以节省空间
 
-left_column, right_column = st.beta_columns(2)
+left_column, right_column = st.columns(2)
 pressed = left_column.button('Press me?')
 if pressed:
     right_column.write("Woohoo!")
