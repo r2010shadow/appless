@@ -322,7 +322,7 @@ st.bar_chart(df)
 # Image upload and text input section
 st.subheader('An Image')
 st.image(
-    'https://www.scoopbyte.com/wp-content/uploads/2019/12/tom-and-jerry.jpg')
+    'https://www.labware.com/hs-fs/hubfs/_LabWare.com/Logos/LabWare%20Corporate%20Logo%20Color.png?width=250&height=143&name=LabWare%20Corporate%20Logo%20Color.png', width=250)
 
 st.subheader('Text Input')
 greet = st.text_input('Write your name, please!')
@@ -334,7 +334,7 @@ tab1, tab2 = st.tabs(["TAB 1", "TAB 2"])
 
 with tab1:
   st.write('WOW!')
-  st.image("https://i.gifer.com/DJR3.gif", width=400)
+  st.image("https://img.zcool.cn/community/017bc85fc0cdbb11013fdcc78f8de1.gif", width=200)
 
 with tab2:
   st.write('Do you like ice cream? 🍨')
