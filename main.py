@@ -1,6 +1,6 @@
 
 import time
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -173,15 +173,6 @@ st.write('Done!')
 # fig：要使用的绘制面板，当为None时，使用整个绘图区域
 # **kwargs ：传入Matplotlib的savefig函数的关键字参数
 
-
-fig, ax = plt.subplots()
-ax.scatter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-st.pyplot(fig)
-
-arr = np.random.normal(1, 1, size=100)
-fig, ax = plt.subplots()
-ax.hist(arr, bins=20)
-st.pyplot(fig)
 
 # st.vega_lite_chart
 # Streamlit Version   v1.1.0
