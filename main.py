@@ -11,7 +11,7 @@ import time
 
 st.set_page_config(layout="wide")
 
-col11, col12, col13, col14 = st.beta_columns((2,1,1,1))
+col11, col12, col13, col14 = st.columns((2,1,1,1))
 
 
 st.title('How to layout your Streamlit app')
