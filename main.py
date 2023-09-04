@@ -11,18 +11,21 @@ import time
 
 st.set_page_config(layout="wide")
 
+col11, col12, col13, col14 = st.beta_columns((2,1,1,1))
+
+
 st.title('How to layout your Streamlit app')
 
 with st.expander('About this app'):
   #st.write('This app shows the various ways on how you can layout your Streamlit app.')
   st.image('https://www.labware.com/hs-fs/hubfs/_LabWare.com/Logos/LabWare%20Corporate%20Logo%20Color.png?width=250&height=143&name=LabWare%20Corporate%20Logo%20Color.png', width=250)
 
-st.sidebar.header('Input')
-user_name = st.sidebar.text_input('What is your name?')
-user_emoji = st.sidebar.selectbox('Choose an emoji', ['', '😄', '😆', '😊', '😍', '😴', '😕', '😱'])
-user_food = st.sidebar.selectbox('What is your favorite food?', ['', 'Tom Yum Kung', 'Burrito', 'Lasagna', 'Hamburger', 'Pizza'])
-
-st.header('Output')
+with col11:
+  st.sidebar.header('Input')
+  user_name = st.sidebar.text_input('What is your name?')
+  user_emoji = st.sidebar.selectbox('Choose an emoji', ['', '😄', '😆', '😊', '😍', '😴', '😕', '😱'])
+  user_food = st.sidebar.selectbox('What is your favorite food?', ['', 'Tom Yum Kung', 'Burrito', 'Lasagna', 'Hamburger', 'Pizza'])
+  st.header('Output')
 
 col1, col2, col3 = st.columns(3)
 
@@ -46,27 +49,25 @@ with col3:
 
 
 # 样例 1
-
-st.subheader('Slider')
-
-age = st.slider('How old are you?', 0, 130, 25)
-st.write("I'm ", age, 'years old')
-
+with col12:
+  st.subheader('Slider')
+  age = st.slider('How old are you?', 0, 130, 25)
+  st.write("I'm ", age, 'years old')
+  
+with col13:
 # 样例 2
-
-st.subheader('Range slider')
-
-values = st.slider(
+  st.subheader('Range slider')
+  values = st.slider(
      'Select a range of values',
      0.0, 100.0, (25.0, 75.0))
-st.write('Values:', values)
+  st.write('Values:', values)
 
+with col14:
 # 样例 3
-st.header('st.button')
-
-if st.button('Say hello'):
+  st.header('st.button')
+  if st.button('Say hello'):
      st.write('Why hello there')
-else:
+  else:
      st.write('Goodbye')
 
 # 样例 4
@@ -320,7 +321,7 @@ st.subheader('Bar Chart 📊')
 st.bar_chart(df)
 
 # Image upload and text input section
-st.subheader('An Image')
+#st.subheader('An Image')
 st.image(
     'https://www.labware.com/hs-fs/hubfs/_LabWare.com/Logos/LabWare%20Corporate%20Logo%20Color.png?width=250&height=143&name=LabWare%20Corporate%20Logo%20Color.png', width=250)
 
@@ -334,7 +335,7 @@ tab1, tab2 = st.tabs(["TAB 1", "TAB 2"])
 
 with tab1:
   st.write('WOW!')
-  st.image("https://img.zcool.cn/community/017bc85fc0cdbb11013fdcc78f8de1.gif", width=200)
+  #st.image("https://img.zcool.cn/community/017bc85fc0cdbb11013fdcc78f8de1.gif", width=200)
 
 with tab2:
   st.write('Do you like ice cream? 🍨')
