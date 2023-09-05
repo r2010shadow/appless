@@ -2,7 +2,5 @@ import streamlit as st
 
 
 st.write("loading ...")
-uploaded_file = st.file_uploader("Add text file !")
-if uploaded_file:
-    for line in uploaded_file:
-        st.write(line)
+file = st.file_uploader("https://github.com/r2010shadow/appless/blob/main/upload-case.py")
+st.write(file)
