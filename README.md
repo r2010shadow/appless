@@ -1,14 +1,14 @@
 # appless
 
 ## streamlit运行原理
-. Streamlit的apps是从上到下执行的Python脚本；
-. 每次当一个用户打开浏览器，访问你的app后，上述脚本就会重新执行；
-. 当脚本执行时，Streamlit在浏览器渲染它的输出；
-. 脚本使用Streamlit缓存来避免重复执行昂贵的运算，所以结果更新会非常快；
-. 每次当用户与部件进行交互时，脚本就会重新运行，部件的返回值也会更新为最新状态。
+- Streamlit的apps是从上到下执行的Python脚本；
+- 每次当一个用户打开浏览器，访问你的app后，上述脚本就会重新执行；
+- 当脚本执行时，Streamlit在浏览器渲染它的输出；
+- 脚本使用Streamlit缓存来避免重复执行昂贵的运算，所以结果更新会非常快；
+- 每次当用户与部件进行交互时，脚本就会重新运行，部件的返回值也会更新为最新状态。
 
 ## streamlit常用语法
-. 基本的文字显示(markdown)
+- 基本的文字显示(markdown)
 import streamlit as st
 st.title("Streamlit的Title!")
 st.header("Streamlit的header")
@@ -16,14 +16,14 @@ st.subheader("Streamlit的subheader")
 st.text("Streamlit的text....")
 st.markdown("### Streamlit的markdown\nctyunos\n #### 基础架构\n 操作系统 ![12]
 
-. 消息状态显示
+- 消息状态显示
 import streamlit as st
 st.success("Success")
 st.info("Information")
 st.warning("Warning")
 st.error("Error")
 
-. 显示图片
+- 显示图片
 配合pillow库，streamlit可以直接显示图形。
 import streamlit as st
 from PIL import Image
@@ -31,14 +31,14 @@ img = Image.open("12.png")
 st.text("图片展示：")
 st.image(img, width=500)
 
-. check box用法
+- check box用法
 check box为可勾选框，如果被选择，则返回True。
 import streamlit as st
 if st.checkbox("Show/Hide"):
     st.text("Showing the widget")
 
 
-. Radio Button
+-  Radio Button
 radio button为复选按钮，可以根据选择的项目，来返回不同值。
 
 import streamlit as st
